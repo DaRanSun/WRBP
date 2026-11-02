@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>WRBP · 竞技征召模拟</title>
+    <meta name="description" content="英雄联盟手游竞技征召 BP 模拟：WRPedia 英雄池，可选全局 BP。">
+    <meta name="theme-color" content="#0a0f17">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="WRBP">
+    <link rel="icon" href="assets/icons/icon.svg" type="image/svg+xml">
+    <link rel="apple-touch-icon" href="assets/icons/icon-180.png">
+    <link rel="manifest" href="manifest.webmanifest">
+    <link rel="stylesheet" href="assets/css/wrbp.css">
+</head>
+<body>
+    <header class="topbar">
+        <div class="brand">
+            <strong>WRBP</strong>
+            <span class="brand-sub">英雄联盟手游 · 竞技征召模拟</span>
+            <a class="mode-link" id="online-link" href="online.html">联机 BP →</a>
+        </div>
+        <div class="controls">
+            <label class="field">赛制
+                <select id="best-of"></select>
+            </label>
+            <label class="field">全局 BP
+                <select id="fearless"></select>
+            </label>
+            <button type="button" id="swap" title="交换本局红蓝方（本局开始前）">⇄ 换边</button>
+            <span class="sep" aria-hidden="true"></span>
+            <button type="button" id="undo" title="撤销（Ctrl / ⌘ + Z）">撤销</button>
+            <button type="button" id="redo" title="重做（Ctrl / ⌘ + Shift + Z）">重做</button>
+            <button type="button" id="reset-game" title="清空本局 BP，比分和之前的局不动">重开本局</button>
+            <button type="button" id="new-series" title="比分清零，清掉全部局；队名和设置保留">新系列赛</button>
+        </div>
+    </header>
+
+    <main class="board">
+        <section class="side" id="side-blue" data-side="blue" aria-label="蓝方"></section>
+
+        <section class="center" aria-label="英雄池">
+            <div class="center-head">
+                <div class="status" id="status" aria-live="polite"></div>
+                <ol class="sequence" id="sequence" aria-label="BP 顺序"></ol>
+                <div class="finder">
+                    <div class="search">
+                        <input id="search" type="search" placeholder="搜英雄：名字 / 称号 / 昵称 / 英文 / 拼音，回车选第一个" autocomplete="off" autocapitalize="off" spellcheck="false" enterkeyhint="done" aria-label="搜索英雄">
+                        <span class="search-count" id="search-count"></span>
+                    </div>
+                    <div class="sort" role="group" aria-label="排序">
+                        <button type="button" data-sort="name"><span class="wide">按</span>名称</button>
+                        <button type="button" data-sort="usage" title="按 WRL 已录入比赛里的选用 + 禁用次数"><span class="wide">按 WRL </span>热度</button>
+                    </div>
+                </div>
+            </div>
+            <div class="grid" id="grid"></div>
+            <p class="no-result" id="no-result" hidden>没有匹配的英雄</p>
+        </section>
+
+        <section class="side" id="side-red" data-side="red" aria-label="红方"></section>
+    </main>
+
+    <section class="history" id="history" aria-label="系列赛记录"></section>
+
+    <footer class="footer">
+        <p id="rules"></p>
+        <p id="source"></p>
+    </footer>
+
+    <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+    <script src="data/champions.js"></script>
+    <script src="assets/js/site.js"></script>
+    <script src="assets/js/draft.js"></script>
+    <script src="assets/js/champions.js"></script>
+    <script src="assets/js/board.js"></script>
+    <script src="assets/js/app.js"></script>
+</body>
+</html>

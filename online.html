@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>WRBP 联机 · 建房</title>
+    <meta name="description" content="英雄联盟手游竞技征召联机 BP：双方教练联机，可加裁判。">
+    <meta name="theme-color" content="#0a0f17">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="WRBP">
+    <link rel="icon" href="assets/icons/icon.svg" type="image/svg+xml">
+    <link rel="apple-touch-icon" href="assets/icons/icon-180.png">
+    <link rel="manifest" href="manifest.webmanifest">
+    <link rel="stylesheet" href="assets/css/wrbp.css">
+</head>
+<body class="page-lobby">
+    <header class="topbar">
+        <div class="brand">
+            <strong>WRBP</strong>
+            <span class="brand-sub">联机 BP</span>
+            <a class="mode-link" id="solo-link" href="index.html">← 单机模拟</a>
+        </div>
+    </header>
+
+    <main class="lobby">
+        <section class="card">
+            <h1>新建房间</h1>
+            <form id="create" autocomplete="off">
+                <fieldset class="mode-options">
+                    <legend>模式</legend>
+                    <label class="mode-option">
+                        <input type="radio" name="mode" value="duo" checked>
+                        <span class="mode-title">双端 · 双方教练</span>
+                        <span class="mode-desc">两队教练各开一个链接，轮到自己时预选、锁定。撤销、记自己胜、改设置要对方同意；认输、败方选边不用。</span>
+                    </label>
+                    <label class="mode-option">
+                        <input type="radio" name="mode" value="trio">
+                        <span class="mode-title">三端 · 双方教练 + 裁判</span>
+                        <span class="mode-desc">裁判开一个链接，负责撤销、改格子、记胜负、换边和设置；教练只管自己的 BP。</span>
+                    </label>
+                </fieldset>
+                <div class="form-grid">
+                    <label class="form-field">队伍 A
+                        <input name="teamA" maxlength="16" placeholder="队伍 A">
+                    </label>
+                    <label class="form-field">队伍 B
+                        <input name="teamB" maxlength="16" placeholder="队伍 B">
+                    </label>
+                    <label class="form-field">赛制
+                        <select name="bestOf"></select>
+                    </label>
+                    <label class="form-field">全局 BP
+                        <select name="fearless"></select>
+                    </label>
+                </div>
+                <p class="form-note">第 1 局队伍 A 在蓝方，开始 BP 之前可以换边；之后每局默认败方在蓝方，败方也可以自己换边。</p>
+                <button type="submit" class="primary big" id="create-button">创建房间</button>
+            </form>
+        </section>
+
+        <section class="card" id="created" hidden></section>
+
+        <section class="card">
+            <h2>观战</h2>
+            <form class="inline-form" id="watch" autocomplete="off">
+                <input name="room" maxlength="6" placeholder="输入 6 位房间号" aria-label="房间号" autocapitalize="off" spellcheck="false">
+                <button type="submit">进入观战</button>
+            </form>
+        </section>
+
+        <section class="card" id="recent" hidden></section>
+    </main>
+
+    <footer class="footer">
+        <p>房间 14 天没人操作会自动删除。链接里带着身份口令，拿到教练链接的人就能替这一队 BP，只发给对应的人。</p>
+    </footer>
+
+    <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+    <script src="assets/js/site.js"></script>
+    <script src="assets/js/draft.js"></script>
+    <script src="assets/js/lobby.js"></script>
+</body>
+</html>

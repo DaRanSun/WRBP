@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>WRBP 联机房间</title>
+    <meta name="description" content="英雄联盟手游竞技征召联机 BP 房间。">
+    <meta name="theme-color" content="#0a0f17">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="WRBP">
+    <meta name="referrer" content="no-referrer">
+    <link rel="icon" href="assets/icons/icon.svg" type="image/svg+xml">
+    <link rel="apple-touch-icon" href="assets/icons/icon-180.png">
+    <link rel="manifest" href="manifest.webmanifest">
+    <link rel="stylesheet" href="assets/css/wrbp.css">
+</head>
+<body class="page-room">
+    <header class="topbar">
+        <div class="brand">
+            <strong>WRBP</strong>
+            <span class="room-code" id="room-code"></span>
+            <span class="role-badge" id="role-badge"></span>
+            <span class="conn-dot" id="conn-dot" title="连接状态"></span>
+        </div>
+        <div class="presence" id="presence" aria-label="在线情况"></div>
+        <div class="controls" id="controls">
+            <label class="field" data-control="settings">赛制
+                <select id="best-of"></select>
+            </label>
+            <label class="field" data-control="settings">全局 BP
+                <select id="fearless"></select>
+            </label>
+            <button type="button" id="swap" data-control="swap">⇄ 换边</button>
+            <button type="button" id="undo" data-control="undo">撤销</button>
+            <button type="button" id="reset-game" data-control="reset">重开本局</button>
+            <button type="button" id="new-series" data-control="newSeries">新系列赛</button>
+            <span class="sep" aria-hidden="true"></span>
+            <button type="button" id="share">链接</button>
+        </div>
+    </header>
+
+    <div class="conn-banner" id="conn-banner" hidden></div>
+
+    <main class="board">
+        <section class="side" id="side-blue" data-side="blue" aria-label="蓝方"></section>
+
+        <section class="center" aria-label="英雄池">
+            <div class="center-head">
+                <div class="notice" id="notice" hidden></div>
+                <div class="status" id="status" aria-live="polite"></div>
+                <ol class="sequence" id="sequence" aria-label="BP 顺序"></ol>
+                <div class="finder">
+                    <div class="search">
+                        <input id="search" type="search" placeholder="搜英雄：名字 / 称号 / 昵称 / 英文 / 拼音，回车预选第一个" autocomplete="off" autocapitalize="off" spellcheck="false" enterkeyhint="done" aria-label="搜索英雄">
+                        <span class="search-count" id="search-count"></span>
+                    </div>
+                    <div class="sort" role="group" aria-label="排序">
+                        <button type="button" data-sort="name"><span class="wide">按</span>名称</button>
+                        <button type="button" data-sort="usage" title="按 WRL 已录入比赛里的选用 + 禁用次数"><span class="wide">按 WRL </span>热度</button>
+                    </div>
+                </div>
+            </div>
+            <div class="grid" id="grid"></div>
+            <p class="no-result" id="no-result" hidden>没有匹配的英雄</p>
+        </section>
+
+        <section class="side" id="side-red" data-side="red" aria-label="红方"></section>
+    </main>
+
+    <section class="history" id="history" aria-label="系列赛记录"></section>
+
+    <footer class="footer">
+        <p id="rules"></p>
+        <p id="source"></p>
+    </footer>
+
+    <dialog class="share-dialog" id="share-dialog">
+        <form method="dialog">
+            <h2>房间链接</h2>
+            <div class="link-list" id="share-links"></div>
+            <p class="form-note">教练链接等于这一队的身份，只发给对应的人。</p>
+            <button class="primary">关闭</button>
+        </form>
+    </dialog>
+
+    <div class="fatal" id="fatal" hidden></div>
+    <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+    <script src="data/champions.js"></script>
+    <script src="assets/js/site.js"></script>
+    <script src="assets/js/draft.js"></script>
+    <script src="assets/js/champions.js"></script>
+    <script src="assets/js/board.js"></script>
+    <script src="assets/js/room.js"></script>
+</body>
+</html>

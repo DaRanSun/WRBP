@@ -1,0 +1,18 @@
+// 联机版（Cloudflare Workers + Durable Objects）。npm run dev 本地跑，npm run deploy 发布。
+{
+    "$schema": "node_modules/wrangler/config-schema.json",
+    "name": "wrbp",
+    "main": "worker/index.mjs",
+    "compatibility_date": "2026-10-01",
+    // 静态页面：tools/build.js 把要发布的文件复制到 dist/。/api/ 之外的路径先找这里的文件。
+    "assets": {
+        "directory": "./dist",
+        "binding": "ASSETS"
+    },
+    "durable_objects": {
+        "bindings": [{ "name": "ROOMS", "class_name": "Room" }]
+    },
+    // 免费套餐只能用 SQLite 存储的 Durable Objects。
+    "migrations": [{ "tag": "v1", "new_sqlite_classes": ["Room"] }],
+    "observability": { "enabled": true }
+}

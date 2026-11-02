@@ -1,0 +1,15 @@
+{
+    "name": "wrbp",
+    "private": true,
+    "description": "英雄联盟手游竞技征召 BP 模拟：单机版（静态）+ 联机版（Cloudflare Workers + Durable Objects）",
+    "scripts": {
+        "build": "node tools/build.js",
+        "dev": "node tools/build.js && wrangler dev",
+        "deploy": "node tools/build.js && wrangler deploy",
+        "deploy:netlify": "node tools/deploy-netlify.js",
+        "check": "node tools/check-draft.js && node tools/check-room.mjs"
+    },
+    "devDependencies": {
+        "wrangler": "4.155.0"
+    }
+}
